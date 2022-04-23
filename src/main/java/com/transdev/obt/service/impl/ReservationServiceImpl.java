@@ -19,8 +19,8 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public Reservation create(Reservation bus) {
-        return null;
+    public Reservation create(Reservation reservation) {
+        return reservationRepository.save(reservation);
     }
 
     @Override
