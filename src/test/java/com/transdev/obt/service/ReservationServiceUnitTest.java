@@ -180,4 +180,17 @@ public class ReservationServiceUnitTest  {
         Assertions.assertThrows(DataAccessException.class, () -> reservationService.deleteBy(reservationId));
         verify(reservationRepository).deleteById(reservationId);
     }
+
+    @Test
+    public void deleteBy_should_throwsAnException_when_theReservationIdNull() {
+        //GIVEN
+        Long reservationId = null;
+
+        //WHEN
+        Mockito.doThrow(IllegalArgumentException.class).when(reservationRepository).deleteById(reservationId);
+
+        //THEN
+        Assertions.assertThrows(IllegalArgumentException.class, () -> reservationService.deleteBy(reservationId));
+        verify(reservationRepository).deleteById(reservationId);
+    }
 }

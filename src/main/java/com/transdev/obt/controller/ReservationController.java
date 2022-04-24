@@ -35,8 +35,8 @@ public class ReservationController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Reservation> create(final @RequestBody Reservation reservation) {
-        //**TODO
-        return ResponseEntity.status(CREATED).body(null);
+        Reservation createdReservation = reservationService.create(reservation);
+        return ResponseEntity.status(CREATED).body(createdReservation);
     }
 
     @GetMapping("{id}")

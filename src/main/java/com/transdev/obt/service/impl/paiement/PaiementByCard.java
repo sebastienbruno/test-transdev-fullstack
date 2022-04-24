@@ -1,4 +1,4 @@
-package com.transdev.obt.service.impl;
+package com.transdev.obt.service.impl.paiement;
 
 import org.springframework.stereotype.Service;
 
@@ -6,10 +6,9 @@ import com.transdev.obt.domain.Facture;
 import com.transdev.obt.domain.Reservation;
 import com.transdev.obt.domain.TypeMoyenPaiementEnum;
 import com.transdev.obt.service.FactureService;
-import com.transdev.obt.service.PaiementService;
 
 @Service
-public class PaiementByCard {
+public class PaiementByCard implements Paiement {
 
     private FactureService factureService;
 

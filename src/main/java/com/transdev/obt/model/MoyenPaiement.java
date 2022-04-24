@@ -1,5 +1,7 @@
 package com.transdev.obt.model;
 
+import com.transdev.obt.domain.TypeMoyenPaiementEnum;
+
 import lombok.Data;
 
 @Data
@@ -15,5 +17,15 @@ public class MoyenPaiement {
 
     public boolean isPaypalPaiement() {
         return !this.getEmail().isEmpty();
+    }
+
+    public TypeMoyenPaiementEnum getTypeMoyenPaiement() {
+        if (this.isCardPaiement()) {
+            return TypeMoyenPaiementEnum.CARTE_BANCAIRE;
+        }
+        if (this.isPaypalPaiement()) {
+            return TypeMoyenPaiementEnum.PAYPAL;
+        }
+        return TypeMoyenPaiementEnum.NON_RECONNU;
     }
 }

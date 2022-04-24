@@ -1,4 +1,4 @@
-package com.transdev.obt.service.impl;
+package com.transdev.obt.service.impl.paiement;
 
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import com.transdev.obt.service.FactureService;
 import com.transdev.obt.service.PaiementService;
 
 @Service
-public class PaiementByPaypal {
+public class PaiementByPaypal implements Paiement {
 
     private FactureService factureService;
 
