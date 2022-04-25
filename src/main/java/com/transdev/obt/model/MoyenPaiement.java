@@ -2,9 +2,11 @@ package com.transdev.obt.model;
 
 import com.transdev.obt.domain.TypeMoyenPaiementEnum;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class MoyenPaiement {
 
     private String cardNumber;

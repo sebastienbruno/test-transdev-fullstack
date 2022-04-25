@@ -6,7 +6,6 @@ import com.transdev.obt.domain.Facture;
 import com.transdev.obt.domain.Reservation;
 import com.transdev.obt.domain.TypeMoyenPaiementEnum;
 import com.transdev.obt.service.FactureService;
-import com.transdev.obt.service.PaiementService;
 
 @Service
 public class PaiementByPaypal implements Paiement {

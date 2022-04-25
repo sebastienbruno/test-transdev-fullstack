@@ -23,7 +23,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -36,7 +35,6 @@ public class ReservationServiceUnitTest  {
     @Mock
     private ReservationRepository reservationRepository;
 
-    @Autowired
     private ReservationService reservationService;
 
     @BeforeEach
