@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,16 +19,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.transdev.obt.domain.Bus;
 import com.transdev.obt.dto.BusDto;
+import com.transdev.obt.dto.TrajetDto;
 import com.transdev.obt.service.BusService;
+import com.transdev.obt.service.TrajetService;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping(value = "/bus", produces = MediaType.APPLICATION_JSON_VALUE)
 public class BusController {
 
     private BusService busService;
+    private TrajetService trajetService;
 
-    public BusController(final BusService busService) {
+    public BusController(final BusService busService, final TrajetService trajetService) {
         this.busService = busService;
+        this.trajetService = trajetService;
     }
 
     @GetMapping
@@ -54,5 +60,11 @@ public class BusController {
     public ResponseEntity<Void> deleteBus(@PathVariable int numero) {
         busService.deleteBy(numero);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{numero}/trajets")
+    public ResponseEntity<List<TrajetDto>> findTrajetsByBusNumero(@PathVariable int numero) {
+        return ResponseEntity.ok(trajetService.findAllByNumeroBus(numero)
+            .stream().map(TrajetDto::fromEntity).collect(Collectors.toList()));
     }
 }

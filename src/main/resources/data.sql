@@ -1,5 +1,5 @@
 INSERT INTO bus (numero_bus) 
-VALUES 1, 2, 3, 4, 5, 6, 7;
+VALUES 17, 34, 45, 198, 255, 2, 77;
 
 INSERT INTO client (email, nom)
 VALUES ('user1@email.com', 'One');

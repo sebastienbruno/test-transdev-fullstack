@@ -3,6 +3,7 @@ package com.transdev.obt.controller;
 import com.transdev.obt.dto.FactureDto;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import com.transdev.obt.service.PaiementService;
 import com.transdev.obt.service.ReservationService;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping(value = "/paiements", produces = MediaType.APPLICATION_JSON_VALUE)
 public class PaiementController {
 
