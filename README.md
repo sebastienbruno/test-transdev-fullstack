@@ -9,6 +9,6 @@ Front-end : https://github.com/sebastienbruno/test-transdev-fullstack-front
 
 ## Authors
 
-* **Sebastien BRUNO** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Sebastien BRUNO**
 
 
