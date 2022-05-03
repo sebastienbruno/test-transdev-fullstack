@@ -22,6 +22,6 @@ public interface TrajetService {
      * @param busId
      * @return la liste des Trajets par BusId
      */
-    List<Trajet> findAllById(List<Long> trajetsId);
+    List<Trajet> findAllById(Iterable<Long> trajetsId);
 
 }

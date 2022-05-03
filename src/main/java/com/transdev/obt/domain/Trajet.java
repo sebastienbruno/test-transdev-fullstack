@@ -39,6 +39,12 @@ public class Trajet {
     @Column
     private float prix;
 
+    @Column
+    private float prixRemise;
+
+    @Column
+    private boolean estRemise;
+
     @OneToOne
     @JoinColumn(name = "bus_id_fk")
     private Bus bus;

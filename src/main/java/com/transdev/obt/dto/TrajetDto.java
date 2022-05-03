@@ -30,7 +30,7 @@ public class TrajetDto {
             .dateDepart(trajet.getDateDepart())
             .prix(trajet.getPrix())
             .bus(BusDto.fromEntity(trajet.getBus()))
-            .estRemise(trajet.getPrix()>100)
-            .prixRemise(trajet.getPrix()>100 ? trajet.getPrix()*0.95f : trajet.getPrix()).build();
+            .estRemise(trajet.isEstRemise())
+            .prixRemise(trajet.getPrixRemise()).build();
     }
 }

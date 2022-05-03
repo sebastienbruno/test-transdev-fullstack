@@ -23,6 +23,7 @@ import com.transdev.obt.domain.Trajet;
 import com.transdev.obt.dto.CreateReservationDto;
 import com.transdev.obt.dto.ReservationDto;
 import com.transdev.obt.exception.ClientNotFoundException;
+import com.transdev.obt.exception.NombrePlaceInsuffisantException;
 import com.transdev.obt.exception.TrajetNotFoundException;
 import com.transdev.obt.service.ClientService;
 import com.transdev.obt.service.ReservationService;
@@ -37,7 +38,7 @@ public class ReservationController {
     private TrajetService trajetService;
     private ClientService clientService;
 
-    public ReservationController(final ReservationService reservationService, 
+    public ReservationController(final ReservationService reservationService,
             final ClientService clientService,
             final TrajetService trajetService) {
         this.reservationService = reservationService;
@@ -51,7 +52,8 @@ public class ReservationController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ReservationDto> create(final @RequestBody CreateReservationDto reservation) throws ClientNotFoundException, TrajetNotFoundException {
+    public ResponseEntity<ReservationDto> create(final @RequestBody CreateReservationDto reservation) 
+        throws ClientNotFoundException, TrajetNotFoundException, IllegalArgumentException, NombrePlaceInsuffisantException {
         if (reservation.getTrajetsId().isEmpty() || Objects.isNull(reservation.getClientId())) {
             throw new IllegalArgumentException();
         }
@@ -79,7 +81,7 @@ public class ReservationController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> deleteBus(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteReservation(@PathVariable Long id) {
         reservationService.deleteBy(id);
         return ResponseEntity.noContent().build();
     }

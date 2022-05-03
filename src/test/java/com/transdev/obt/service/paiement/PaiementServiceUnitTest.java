@@ -75,8 +75,7 @@ public class PaiementServiceUnitTest {
         //WHEN
         Mockito.when(factureService.generateFacture(reservation, moyenPaiement.getTypeMoyenPaiement()))
             .thenReturn(Facture.builder()
-                .factureId(10L)
-                .numero(10L).build());
+                .factureId(10L).build());
         Facture factureActual = paiementService.payReservation(reservation, moyenPaiement);
 
         //THEN

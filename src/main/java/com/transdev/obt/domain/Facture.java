@@ -22,10 +22,6 @@ public class Facture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long factureId;
 
-    @Column(unique = true, nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long numero;
-
     @OneToOne
     @JoinColumn(name = "reservation_id_fk")
     private Reservation reservation;

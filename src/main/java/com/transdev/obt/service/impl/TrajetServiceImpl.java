@@ -28,7 +28,7 @@ public class TrajetServiceImpl implements TrajetService {
     }
 
     @Override
-    public List<Trajet> findAllById(List<Long> trajetsId) {
+    public List<Trajet> findAllById(Iterable<Long> trajetsId) {
         return trajetRepository.findAllById(trajetsId);
     }
 }

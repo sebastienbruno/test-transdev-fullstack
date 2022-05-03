@@ -9,7 +9,8 @@ import org.springframework.web.context.request.WebRequest;
 @ControllerAdvice
 public class ControllerExceptionHandler {
     
-    @ExceptionHandler(value = { ReservationNotFoundException.class, MoyenPaiementNotValidException.class })
+    @ExceptionHandler(value = { NombrePlaceInsuffisantException.class, ReservationNotFoundException.class, MoyenPaiementNotValidException.class, 
+        ClientNotFoundException.class, IllegalArgumentException.class, TrajetNotFoundException.class })
     public ResponseEntity<String> handleResourceNotFoundException(RuntimeException ex, WebRequest request) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }

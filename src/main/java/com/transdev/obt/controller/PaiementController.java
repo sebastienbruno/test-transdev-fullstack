@@ -1,6 +1,8 @@
 package com.transdev.obt.controller;
 
 import com.transdev.obt.dto.FactureDto;
+import com.transdev.obt.dto.PaiementDto;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,7 +34,9 @@ public class PaiementController {
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<FactureDto> payReservation(final @RequestBody Long reservationId, MoyenPaiement moyenPaiement) throws MoyenPaiementNotValidException, ReservationNotFoundException {
+  public ResponseEntity<FactureDto> payReservation(final @RequestBody PaiementDto paiement) throws MoyenPaiementNotValidException, ReservationNotFoundException {
+    Long reservationId = paiement.getReservationId();
+    MoyenPaiement moyenPaiement = paiement.getMoyenPaiement().toEntity();
     Reservation reservation = reservationService.findBy(reservationId)
       .orElseThrow(() -> new ReservationNotFoundException(reservationId));
     Facture facture = paiementService.payReservation(reservation, moyenPaiement);
