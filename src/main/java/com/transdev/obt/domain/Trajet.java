@@ -47,4 +47,14 @@ public class Trajet {
     @OneToOne
     @JoinColumn(name = "bus_id_fk")
     private Bus bus;
+
+    public String toString() {
+        StringBuffer result = new StringBuffer();
+        result
+            .append("Bus n°")
+            .append(bus.getNumeroBus())
+            .append(" - trajet ")
+            .append(dateDepart);
+        return result.toString();
+    }
 }

@@ -2,6 +2,7 @@ package com.transdev.obt.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -31,6 +32,6 @@ public class Reservation {
     @JoinColumn(name = "client_id_fk")
     private Client client;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "reservation")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "reservation", cascade = CascadeType.PERSIST)
     private List<Billet> billets;
 }
