@@ -97,7 +97,6 @@ public class PaiementServiceUnitTest {
         Reservation reservation = Reservation.builder()
             .client(Client.builder().email("myemail@mail.com").build())
             .billets(billets).build();
-            //.trajets(trajets).build();
         return reservation;
     }
 
