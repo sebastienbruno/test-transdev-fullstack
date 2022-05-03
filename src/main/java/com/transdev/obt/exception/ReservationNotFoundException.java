@@ -1,6 +1,6 @@
 package com.transdev.obt.exception;
 
-public class ReservationNotFoundException extends Exception {
+public class ReservationNotFoundException extends RuntimeException {
 
     public ReservationNotFoundException(Long reservationID) {
         super("La réservation avec l'identifiant " + reservationID + " est introuvable.");

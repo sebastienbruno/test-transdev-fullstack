@@ -5,6 +5,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.transdev.obt.domain.Billet;
 import com.transdev.obt.domain.Client;
 import com.transdev.obt.domain.Reservation;
 import com.transdev.obt.domain.Trajet;
@@ -54,18 +56,23 @@ public class ReservationController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ReservationDto> create(final @RequestBody CreateReservationDto reservation) 
         throws ClientNotFoundException, TrajetNotFoundException, IllegalArgumentException, NombrePlaceInsuffisantException {
-        if (reservation.getTrajetsId().isEmpty() || Objects.isNull(reservation.getClientId())) {
+        if (reservation.getBillets().isEmpty() || Objects.isNull(reservation.getClientId())) {
             throw new IllegalArgumentException();
         }
-        List<Trajet> trajets = trajetService.findAllById(reservation.getTrajetsId());
-        if (trajets.size() != reservation.getTrajetsId().size()) {
-            throw new TrajetNotFoundException();
-        }
+
+        List<Billet> billetsEntity = reservation.getBillets().stream().map(billetDto -> {
+            Trajet trajet = trajetService.findById(billetDto.getTrajetId())
+                .orElseThrow(TrajetNotFoundException::new);
+            return Billet.builder()
+                .quantite(billetDto.getQuantite())
+                .trajet(trajet)
+                .build();
+            }).collect(Collectors.toList());
         Client client = clientService.findById(reservation.getClientId())
             .orElseThrow(() -> new ClientNotFoundException(reservation.getClientId()));
         Reservation reservationToSave = Reservation.builder()
             .client(client)
-            .trajets(trajets).build();
+            .billets(billetsEntity).build();
         Reservation createdReservation = reservationService.create(reservationToSave);
         return ResponseEntity.status(CREATED).body(ReservationDto.fromEntity(createdReservation));
     }

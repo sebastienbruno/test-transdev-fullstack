@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.transdev.obt.domain.Billet;
 import com.transdev.obt.domain.Bus;
 import com.transdev.obt.domain.Client;
 import com.transdev.obt.domain.Facture;
@@ -84,16 +85,19 @@ public class PaiementServiceUnitTest {
     }
 
     private Reservation createSimpleReservation() {
-        List<Trajet> trajets = new ArrayList<Trajet>();
-        trajets.add(Trajet.builder()
-            .bus(Bus.builder().busId(1L).build())
-            .dateDepart(LocalDateTime.now())
-            .nbrPlace(12)
-            .prix(40)
-            .trajetId(1L).build());
+        List<Billet> billets = new ArrayList<Billet>();
+        billets.add(Billet.builder().billetId(1L)
+            .trajet(Trajet.builder()
+                .bus(Bus.builder().busId(1L).build())
+                .dateDepart(LocalDateTime.now())
+                .nbrPlace(12)
+                .prix(40)
+                .trajetId(1L).build())
+            .quantite(3).build());
         Reservation reservation = Reservation.builder()
             .client(Client.builder().email("myemail@mail.com").build())
-            .trajets(trajets).build();
+            .billets(billets).build();
+            //.trajets(trajets).build();
         return reservation;
     }
 

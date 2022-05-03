@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -48,8 +47,4 @@ public class Trajet {
     @OneToOne
     @JoinColumn(name = "bus_id_fk")
     private Bus bus;
-
-    @ManyToOne
-    @JoinColumn(name = "reservation_id_fk")
-    private Reservation reservation;
 }

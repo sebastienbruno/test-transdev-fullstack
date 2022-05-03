@@ -1,10 +1,18 @@
 package com.transdev.obt.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.transdev.obt.domain.Trajet;
 
 public interface TrajetService {
+
+
+    /**
+     * @param trajetId
+     * @return le Trajet par son identifiant
+     */
+    Optional<Trajet> findById(Long trajetId);
 
     /**
      * @param numeroBus
