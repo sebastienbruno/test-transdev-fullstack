@@ -1,6 +1,7 @@
 package com.transdev.obt.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,11 @@ public class TrajetServiceImpl implements TrajetService {
 
     public TrajetServiceImpl(final TrajetRepository trajetRepository) {
         this.trajetRepository = trajetRepository;
+    }
+
+    @Override
+    public Optional<Trajet> findById(Long trajetId) {
+        return trajetRepository.findById(trajetId);
     }
 
     @Override

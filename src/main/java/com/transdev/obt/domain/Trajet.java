@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -49,7 +48,13 @@ public class Trajet {
     @JoinColumn(name = "bus_id_fk")
     private Bus bus;
 
-    @ManyToOne
-    @JoinColumn(name = "reservation_id_fk")
-    private Reservation reservation;
+    public String toString() {
+        StringBuffer result = new StringBuffer();
+        result
+            .append("Bus n°")
+            .append(bus.getNumeroBus())
+            .append(" - trajet ")
+            .append(dateDepart);
+        return result.toString();
+    }
 }

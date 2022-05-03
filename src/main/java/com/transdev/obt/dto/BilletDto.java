@@ -1,6 +1,6 @@
 package com.transdev.obt.dto;
 
-import java.util.List;
+import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,9 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CreateReservationDto {
-    
-    private List<BilletDto> billets;
-    private Long clientId;
+public class BilletDto implements Serializable {
 
+    private int quantite;
+    private Long trajetId;
 }

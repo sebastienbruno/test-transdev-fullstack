@@ -1,15 +1,12 @@
 package com.transdev.obt.domain;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -22,16 +19,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Reservation {
+public class Billet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reservationId;
+    private Long billetId;
+
+    @Column
+    private int quantite;
 
     @OneToOne
-    @JoinColumn(name = "client_id_fk")
-    private Client client;
+    @JoinColumn(name = "trajet_id_fk")
+    private Trajet trajet;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "reservation", cascade = CascadeType.PERSIST)
-    private List<Billet> billets;
+    @ManyToOne
+    @JoinColumn(name = "reservation_id_fk")
+    private Reservation reservation;
 }

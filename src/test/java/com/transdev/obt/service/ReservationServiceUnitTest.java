@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import com.transdev.obt.domain.Billet;
 import com.transdev.obt.domain.Bus;
 import com.transdev.obt.domain.Client;
 
@@ -47,17 +48,18 @@ public class ReservationServiceUnitTest  {
     @Test
     public void create_should_saveAndReturnTheReservation_when_reservationContainsTrajets() {
         //GIVEN
-        List<Trajet> trajets = new ArrayList<Trajet>();
-        trajets.add(Trajet.builder()
-            .bus(Bus.builder().busId(1L).build())
-            .dateDepart(LocalDateTime.now())
-            .nbrPlace(12)
-            .prix(40)
-            .trajetId(1L).build());
-
+        List<Billet> billets = new ArrayList<Billet>();
+        billets.add(Billet.builder().billetId(1L)
+            .trajet(Trajet.builder()
+                .bus(Bus.builder().busId(1L).build())
+                .dateDepart(LocalDateTime.now())
+                .nbrPlace(12)
+                .prix(40)
+                .trajetId(1L).build())
+            .quantite(3).build());
         Reservation reservation = Reservation.builder()
             .client(CLIENT)
-            .trajets(trajets).build();
+            .billets(billets).build();
 
         //WHEN
         Mockito.when(reservationRepository.save(reservation)).thenReturn(reservation);
@@ -71,10 +73,10 @@ public class ReservationServiceUnitTest  {
     @Test
     public void create_should_throwExeption_when_reservationHasNoTrajet() {
         //GIVEN
-        List<Trajet> trajets = new ArrayList<Trajet>();
+        List<Billet> billets = new ArrayList<Billet>();
         Reservation reservation = Reservation.builder()
             .client(CLIENT)
-            .trajets(trajets).build();
+            .billets(billets).build();
 
         //WHEN
         Mockito.when(reservationRepository.save(Mockito.any())).thenThrow(DataIntegrityViolationException.class);
@@ -118,16 +120,18 @@ public class ReservationServiceUnitTest  {
     @Test
     public void findBy_should_returnOneReservation_when_theReservationIdExists() {
         //GIVEN
-        List<Trajet> trajets = new ArrayList<Trajet>();
-        trajets.add(Trajet.builder()
-            .bus(Bus.builder().busId(1L).build())
-            .dateDepart(LocalDateTime.now())
-            .nbrPlace(12)
-            .prix(40)
-            .trajetId(1L).build());
+        List<Billet> billets = new ArrayList<Billet>();
+        billets.add(Billet.builder().billetId(1L)
+            .trajet(Trajet.builder()
+                .bus(Bus.builder().busId(1L).build())
+                .dateDepart(LocalDateTime.now())
+                .nbrPlace(12)
+                .prix(40)
+                .trajetId(1L).build())
+            .quantite(3).build());
         Reservation actualReservation = Reservation.builder()
             .client(CLIENT)
-            .trajets(trajets).build();
+            .billets(billets).build();
         Long reservationId = 1L;
 
         //WHEN
