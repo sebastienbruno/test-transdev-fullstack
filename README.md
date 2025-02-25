@@ -6,7 +6,10 @@ Front-end : https://github.com/sebastienbruno/test-transdev-fullstack-front
 1. <code>git clone https://github.com/sebastienbruno/test-transdev-fullstack</code>
 2. <code>cd test-transdev-fullstack</code>
 3. <code>mvn install</code>
-4. <code>java -jar target/online-bus-ticket-ws-<version>.jar</code>
+4. <code>java -jar target/online-bus-ticket-ws-\<version>.jar</code>
+
+Actual version is 0.0.1-SNAPSHOT
+* <code>java -jar .\target\online-bus-ticket-ws-0.0.1-SNAPSHOT.jar</code>
 
 ## Built With
 
